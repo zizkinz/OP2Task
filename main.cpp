@@ -20,7 +20,7 @@ int main() {
     int n;
     studentas st1;
     studentas st2;
-    cout<<"New test";
+    cout<<"New testdhsjjdsa";
     cout << "Iveskite studento varda ir pavarde: ";
     cin >> st1.vard >> st1.pavard;
     cout << "Kiek namu darbu bus? (1-10)"; cin >> n;
