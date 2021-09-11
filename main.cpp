@@ -1,56 +1,55 @@
-#include <iostream>
-#include <string>
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
+#include "libai.h"
+
 
 struct studentas {
     string vard, pavard;
-    float nd[10]{};
+//    float nd[5];
     float ekzam;
     float gal;
 };
+int main() {
+    cout << "Iveskite studentu skaiciu: ";
+    int stud_sk;
+    cin >> stud_sk;
+    cout << "Iveskite namu darbu skaiciu: ";
+    int nd_sk;
+    cin >> nd_sk;
+    studentas grupe[stud_sk];
+    for (int i = 0; i < stud_sk; i++) {
+        int sum = 0;
+        int nd[nd_sk];
+        cout << "Iveskite " << i + 1 << "-o studento varda ir pavarde:";
+        cin >> grupe[i].vard >> grupe[i].pavard;
+        for (int j = 0; j < nd_sk; j++) {
+            cout << "Iveskite " << j + 1 << " pazymio iverti\n";
+//            cin >> grupe[i].nd[j];
+//            sum += grupe[i].nd[j];
+            cin >> nd[j];
+            sum += nd[j];
+        }
+        cout << "Iveskite " << i + 1 << "-o studento egzamino pazymi:\n";
+        cin >> grupe[i].ekzam;
 
-
-void pild(studentas &kint);
-void printas(studentas &kin);
-
-
-int main()
-{
-
-    studentas st1;
-    studentas st2{ "Vardas2","Pavarde2",{5,8,7,4,5,8,9,5,4},9, 0};
-    //pild(st1);
-    //printas(st1);
-    studentas studentai[10];
-    for (int i = 0; i < 2; i++)
-        pild(studentai[i]);
-    for (int i = 0; i < 2; i++)
-        printas(studentai[i]);
-
-}
-
-void pild(studentas& kint) {
-    int n;
-    cout << "Iveskite studento varda ir pavarde: "; cin >> kint.vard >> kint.pavard;
-    cout << "Kiek namu darbu bus? (1-10)"; cin >> n;
-    cout << "Iveskite pazymius:" << endl;
-    float sum = 0, vid = 0;
-    for (int i = 0; i < n; i++) {
-        cin >> kint.nd[i];
-        sum += kint.nd[i];
+        grupe[i].gal = 0.4 * (static_cast<double>(sum) / nd_sk) + (0.6 * grupe[i].ekzam);
     }
-    vid = sum / n;
-    cout << "Iveskite egzamino pazymi:"; cin >> kint.ekzam;
-    kint.gal = vid * 0.4 + kint.ekzam;
-}
 
-void printas(studentas& kin) {
-    cout << kin.vard << " " << kin.pavard<<" ";
-    for (int i = 0; i < sizeof(kin.nd) / sizeof(kin.nd[0]); i++)
-        cout << kin.nd[i] << " ";
-    cout << "Egzaminas = " << kin.ekzam << "; Galutinis: " << kin.gal<<endl;
-}
 
+    int max_vard = 7;
+    int max_pavard = 6;
+    for (auto &kint: grupe) {
+        int v = kint.vard.string::length();
+        int pv = kint.pavard.string::length();
+        if (v > max_vard) { max_vard = v; }
+        if (pv > max_pavard) { max_pavard = pv; }
+    }
+
+
+    cout << setw(max_vard + 2) << left << "Vardas" << setw(max_pavard + 2) << left << "Pavarde" << setw(11) << left
+         << "Galutinis" << endl;
+    for (int i = 0; i < (max_vard + max_pavard + 15); i++) { cout << "-"; }
+    cout << "\n";
+    for (auto &kint: grupe) {
+        cout << setw(max_vard + 2) << left << kint.vard << setw(max_pavard + 2) << left << kint.pavard << setw(11)
+             << left << kint.gal << endl;
+    }
+}
