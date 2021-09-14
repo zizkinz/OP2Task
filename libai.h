@@ -6,8 +6,11 @@
 #define OP1TASK_LIBAI_H
 
 #endif //OP1TASK_LIBAI_H
+//#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -16,3 +19,4 @@ using std::string;
 using std::left;
 using std::setprecision;
 using std::endl;
+using std::vector;
