@@ -1,5 +1,5 @@
-#include <vector>
 #include "libai.h"
+
 
 
 struct studentas {
@@ -282,18 +282,29 @@ void print_stud(vector<studentas> grupe, string tipas, bool pr){
             for (int i = 0; i < max_nd; i++) {
                 cout << setw(3 + std::to_string(i+1).length()) << left << kint.nd[i];
             }
-            cout<<setw(5)<<left<<kint.ekzam;
+            cout<<setw(5)<<left<<setprecision(2) <<kint.ekzam;
         }
-        cout<< setw(18) << left << kint.gal << endl;
+        cout<< setw(18) << left <<left<<setprecision(3) << kint.gal << endl;
     }
 }
 
 int main() {
+    cout<< "Jus norite, kad grupe, bei studentu pazymiai butu saugojami naudojant 'std::vector' arba tradicini dinamini C masyva?"<<endl;
+    cout<<"Jei norite naudoti dinamini masyva - iveskite '1', jei norite nautodi 'std::vector' - iveskite bet koki kita skaiciu:"<<endl;
+    int ptt;
+    if (cin >> ptt && ptt == 1){
+        dynArr();
+        return 0;
+    }
+    else {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     srand(time(NULL));
     vector<studentas> grupe;
     bool prp = false;
     cout
-            << "Ar jus pageidaujate, kad mokiniai, bei ju rezultatai butu generuojami atsitiktinai?\nJei taip - iveskite '1', jei ne - iveskite bet koki kita simboli."
+            << "Ar jus pageidaujate, kad studentai, bei ju rezultatai butu generuojami atsitiktinai?\nJei taip - iveskite '1', jei ne - iveskite bet koki kita simboli."
             << endl;
     int at;
     if (cin >> at && at == 1) {
