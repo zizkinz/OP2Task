@@ -1,6 +1,6 @@
 #include "libai.h"
 
-
+//sdas
 
 struct studentas {
     string vard, pavard;
