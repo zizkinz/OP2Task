@@ -294,6 +294,19 @@ void print_stud(vector<studentas> grupe,  bool pr){
     }
 }
 
+bool stud_compare(studentas const &stud_1, studentas const &stud_2){
+    int p = stud_1.vard.compare(stud_2.vard);
+    if ( p < 0){return true;}
+    else if(p == 0){
+        int k = stud_1.pavard.compare(stud_2.pavard);
+        if (k < 0){return true;}
+        else {return false;}
+    }
+    else {return false;}
+}
+
+
+
 int main() {
     srand(time(NULL));
     vector<studentas> grupe;
@@ -464,6 +477,10 @@ int main() {
             }
         }
     }
+
+
+    sort(grupe.begin(),grupe.end(), stud_compare);
+
     med_sk(grupe);
     mean_sk(grupe);
     print_stud(grupe, prp);
