@@ -1,11 +1,13 @@
+
 #include "libai.h"
 
-//sdas
+
 
 struct studentas {
     string vard, pavard;
     float ekzam;
-    float gal;
+    float gal_vid;
+    float gal_med;
     vector<int> nd;
 };
 
@@ -230,7 +232,7 @@ void med_sk(vector<studentas> &grupe) {
             n = static_cast<int>(n / 2);
             med = nd[n];
         }
-        studen.gal = 0.4 * med + (0.6 * studen.ekzam);
+        studen.gal_med = 0.4 * med + (0.6 * studen.ekzam);
     }
 }
 
@@ -240,11 +242,11 @@ void mean_sk(vector<studentas> &grupe) {
         for (int paz: studen.nd) {
             sum += paz;
         }
-        studen.gal = 0.4 * (static_cast<double>(sum) / studen.nd.size()) + (0.6 * studen.ekzam);
+        studen.gal_vid = 0.4 * (static_cast<double>(sum) / studen.nd.size()) + (0.6 * studen.ekzam);
     }
 }
 
-void print_stud(vector<studentas> grupe, string tipas, bool pr){
+void print_stud(vector<studentas> grupe,  bool pr){
     int max_vard = 6;
     int max_pavard = 7;
     int max_nd = 0;
@@ -268,8 +270,8 @@ void print_stud(vector<studentas> grupe, string tipas, bool pr){
         }
         cout<<setw(5)<<left<<"Egz.";
     }
-    cout<<setw(18)<< left<< tipas<< endl;
-    for (int i = 0; i < (max_vard + max_pavard + 20); i++) { cout << "-"; }
+    cout<<setw(18)<< left<< "Galutinis (Vid.)"<<setw(18)<< left<< "Galutinis (Med.)"<< endl;
+    for (int i = 0; i < (max_vard + max_pavard + 38); i++) { cout << "-"; }
     if (pr){
         for (int i = 0;i<max_nd;i++){
             cout << "----";
@@ -279,33 +281,27 @@ void print_stud(vector<studentas> grupe, string tipas, bool pr){
     for (auto &kint: grupe) {
         cout << setw(max_vard + 2) << left << kint.vard<< setw(max_pavard + 2) << left << kint.pavard;
         if (pr) {
-            for (int i = 0; i < max_nd; i++) {
+            for (int i = 0; i < kint.nd.size(); i++) {
                 cout << setw(3 + std::to_string(i+1).length()) << left << kint.nd[i];
+            }
+            for (int i = kint.nd.size(); i < max_nd; i++){
+                cout<< setw(3 + std::to_string(i+1).length())<<left<<"--";
             }
             cout<<setw(5)<<left<<setprecision(2) <<kint.ekzam;
         }
-        cout<< setw(18) << left <<left<<setprecision(3) << kint.gal << endl;
+        cout<< setw(18) << left <<left<<setprecision(3) << kint.gal_vid;
+        cout<< setw(18) << left <<left<<setprecision(3) << kint.gal_med << endl;
     }
 }
 
 int main() {
-    cout<< "Jus norite, kad grupe, bei studentu pazymiai butu saugojami naudojant 'std::vector' arba tradicini dinamini C masyva?"<<endl;
-    cout<<"Jei norite naudoti dinamini masyva - iveskite '1', jei norite nautodi 'std::vector' - iveskite bet koki kita skaiciu:"<<endl;
-    int ptt;
-    if (cin >> ptt && ptt == 1){
-        dynArr();
-        return 0;
-    }
-    else {
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
     srand(time(NULL));
     vector<studentas> grupe;
     bool prp = false;
-    cout
-            << "Ar jus pageidaujate, kad studentai, bei ju rezultatai butu generuojami atsitiktinai?\nJei taip - iveskite '1', jei ne - iveskite bet koki kita simboli."
-            << endl;
+    cout<< "Kaip jus norite pateikti studentu duomenis?"<< endl;
+    cout<<"Jei norite, kad duomenis butu generuojami atsitiktinai - iveskite '1';"<<endl;
+    cout<<"Jei norite, kad duomenis butu nuskaitomi is failo - iveskite '2';"<<endl;
+    cout<<"Jei norite ivesti duomenis rankiniu budu - iveskite bet koki kita simboli;"<<endl;
     int at;
     if (cin >> at && at == 1) {
         prp = true;
@@ -333,7 +329,79 @@ int main() {
             grupe.push_back(generate(nd_s));
         }
 
-    } else {
+    }
+    else if (at == 2){
+
+        cout<<"Iveskite tekstinio failio lokacija:"<<endl;
+        string loc;
+        cin>> loc;
+//        string loc = "../kursiokai.txt";
+        ifstream file(loc) ;
+        while (true){
+            if (file.is_open()){break;}
+            else {
+                cout<<"Failas '"<< loc << "' nebuvo surastas, iveskite lokacija dar karta:" << endl;
+                cin>> loc;
+                file.open(loc);
+            }
+        }
+
+        string line;
+        int std_n = 0;
+        while(getline(file,line)){
+            if (std_n == 0){std_n++;continue;}
+            vector<string> data;
+            int pos;
+            if(line.size() < 8 ){continue;}
+            while (line.size() != 0){
+                pos = line.find(" ");
+                if (pos == 0){line.erase(0,1);continue;}
+                if (pos == string::npos){
+                    data.push_back(line);
+                    break;}
+                data.push_back(line.substr(0,pos));
+                line.erase(0,pos + 1);
+            }
+            if (data.size() < 4){continue;}
+            studentas st;
+            st.vard = data[0];
+            st.pavard = data[1];
+            int nm;
+            bool brk = false;
+            std::stringstream ss;
+            for (int i = 2; i < data.size()-1; i++){
+                if ( data[i].find_first_not_of("0123456789") != string::npos){
+                    cout<<std_n<<"-ojo studento "<<data[0]<<" "<<data[1]<<" "<<i-1<<"-oji namu darbu reiksme '"<<data[i]<<"' nera sveikas skaicius"<<endl;
+                    cout<<"Ar jus norite pasalinti visus turimus duomenis apie sita studenta?"<<endl;
+                    cout<<"Jei taip - iveskite '1', jei norite palikti likusius duomenis - iveskite bet koki kita simboli"<<endl;
+                    int v;
+                    if (cin>>v && v ==1){
+                        cout<<"Studento "<<data[0]<<" "<<data[1]<<" duomenis buvo pasalinti. Nuskaitomi kiti studentai."<<endl;
+                        brk = true;
+                        break;
+                    }
+                    else {
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+                    }
+                }
+                ss.clear();
+                ss << data[i];
+                ss >> nm;
+                st.nd.push_back(nm);
+            }
+            if (brk){continue;}
+            ss.clear();
+            ss << data.back();
+            ss >> nm;
+            st.ekzam = nm;
+            grupe.push_back(st);
+            std_n++;
+        }
+    }
+
+    else {
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         int i = 0;
@@ -396,29 +464,8 @@ int main() {
             }
         }
     }
-        cout<< "Kaip jus norite skaicioti galutini bala?\nJei pagal mediana - iveskite \"1\", jei pagal vidurki - iveskite \"2\":\n";
-        int ats;
-        while (true) {
-            if (cin >> ats) {
-                if (ats == 1) {
-                    med_sk(grupe);
-                    print_stud(grupe,"Galutinis (Med.)", prp);
-                    break;
-                } else if (ats == 2) {
-                    mean_sk(grupe);
-                    print_stud(grupe,"Galutinis (Vid.)",prp);
-                    break;
-                } else {
-                    cout << "Jus ivedete netinkama simboli: " << endl;
-                    cout
-                            << "Prasome ivesti \"1\", jeigu norite skaicioti galutini bala pagal mediana, arba \"2\", jei norite skaiciuoti pagal vidurki:\n";
-                }
-            } else {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                cout << "Jus ivedete netinkama simboli: " << endl;
-                cout
-                        << "Prasome ivesti \"1\", jeigu norite skaicioti galutini bala pagal mediana, arba \"2\", jei norite skaiciuoti pagal vidurki:\n";
-            }
-        }
+    med_sk(grupe);
+    mean_sk(grupe);
+    print_stud(grupe, prp);
+
     }
