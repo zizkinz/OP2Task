@@ -8,15 +8,14 @@
 #endif //OP1TASK_LIBAI_H
 
 #include <fstream>
-
 #include <sstream>
-#include <cstdlib>
 #include <iostream>
 #include <iomanip>
-#include <ctime>
 #include <vector>
+#include <random>
+#include <chrono>
 
-//#include "studentas.h"
+
 
 using std::getline;
 using std::ifstream;

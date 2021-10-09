@@ -1,9 +1,13 @@
 #include "generate.h"
 studentas generate(int nd_sk) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0,1);
     studentas st;
-    switch (rand() % 2) {
+    switch (dist(mt)) {
         case 0: {
-            switch (rand() % 45) {
+            std::uniform_int_distribution<int> dist(0,44);
+            switch (dist(mt)) {
                 case 0:
                     st.vard = "Lukas";
                     break;
@@ -140,7 +144,7 @@ studentas generate(int nd_sk) {
                     st.vard = "Vakaris";
                     break;
             }
-            switch (rand() % 45) {
+            switch (dist(mt)) {
                 case 0:
                     st.pavard = "Adomaitis";
                     break;
@@ -280,7 +284,8 @@ studentas generate(int nd_sk) {
             break;
         }
         case 1: {
-            switch (rand() % 45) {
+            std::uniform_int_distribution<int> dist(0,44);
+            switch (dist(mt)) {
                 case 0:
                     st.vard = "Gabija";
                     break;
@@ -417,7 +422,7 @@ studentas generate(int nd_sk) {
                     st.vard = "Milana";
                     break;
             }
-            switch (rand() % 45) {
+            switch (dist(mt)) {
                 case 0:
                     st.pavard = "Alekna";
                     break;
