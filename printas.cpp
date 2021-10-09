@@ -40,9 +40,9 @@ void print_stud(vector<studentas> &grupe, bool pr) {
             for (int i = kint.nd.size(); i < max_nd; i++) {
                 cout << setw(3 + std::to_string(i + 1).length()) << left << "--";
             }
-            cout << setw(5) << left << setprecision(2) << kint.ekzam;
+            cout << setw(5) << left << kint.ekzam;
         }
-        cout << setw(18) << left << left << setprecision(3) << kint.gal_vid;
-        cout << setw(18) << left << left << setprecision(3) << kint.gal_med << endl;
+        cout << setw(18) << left << fixed << setprecision(2) << kint.gal_vid;
+        cout << setw(18) << left << fixed << setprecision(2) << kint.gal_med << endl;
     }
 }

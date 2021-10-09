@@ -7,7 +7,7 @@
 #include "libai.h"
 struct studentas {
     string vard, pavard;
-    float ekzam;
+    int ekzam;
     float gal_vid;
     float gal_med;
     vector<int> nd;

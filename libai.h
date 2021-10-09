@@ -29,5 +29,5 @@ using std::left;
 using std::setprecision;
 using std::endl;
 using std::vector;
-
+using std::fixed;
 

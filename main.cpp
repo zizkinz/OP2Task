@@ -47,16 +47,19 @@ int main() {
         string loc;
         cin >> loc;
 //        string loc = "../kursiokai.txt";
-        ifstream file(loc);
-        while (true) {
-            if (file.is_open()) { break; }
-            else {
+        ifstream file;
+        while(true) {
+            try {
+                file.open(loc);
+                if (!file.is_open()) { throw 1; }
+            }
+            catch (int err) {
                 cout << "Failas '" << loc << "' nebuvo surastas, iveskite lokacija dar karta:" << endl;
                 cin >> loc;
-                file.open(loc);
+                continue;
             }
+            break;
         }
-
         string line;
         int std_n = 0;
         while (getline(file, line)) {
