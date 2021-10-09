@@ -5,6 +5,7 @@
 #include "mean.h"
 #include "printas.h"
 #include "comparator.h"
+#include "writeas.h"
 
 int main() {
     srand(time(NULL));
@@ -190,11 +191,17 @@ int main() {
         }
     }
 
-
-    sort(grupe.begin(), grupe.end(), stud_compare);
-
-    med_sk(grupe);
+//    write_student(grupe,"data.txt");
+//    sort(grupe.begin(), grupe.end(), stud_compare);
+//    med_sk(grupe);
     mean_sk(grupe);
-    print_stud(grupe, prp);
-
+//    print_stud(grupe, prp);
+vector<studentas> nuskriaustukai;
+vector<studentas> galvociai;
+for(studentas &kint : grupe){
+    if (kint.gal_vid < 5.0){nuskriaustukai.push_back(kint);}
+    else {galvociai.push_back(kint);}
+}
+    write_student(nuskriaustukai,"nuskraustukai.txt");
+    write_student(galvociai, "galvociai.txt");
 }
