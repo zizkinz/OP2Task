@@ -33,3 +33,4 @@ Sąrašai implementuoti dviem būdais:
 
 ***Atlikta programos veikimo greičio analizė naudojant C++ chrono biblioteką:***
 
+![alt text](https://github.com/zizkinz/OP1Task/blob/cd431cb9b957d8aa06551d17c63e3e201fab6ede/tests.png?raw=true)
