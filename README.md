@@ -34,3 +34,17 @@ Sąrašai implementuoti dviem būdais:
 ***Atlikta programos veikimo greičio analizė naudojant C++ chrono biblioteką:***
 
 ![alt text](https://github.com/zizkinz/OP1Task/blob/cd431cb9b957d8aa06551d17c63e3e201fab6ede/tests.png?raw=true)
+
+**Atlikus 4 testus, buvo gauti tokie suvidurkinti rezultatai:**
+
+
+|Įrašų skaičius|Vidutinis testų laikas|Laiko augimas, padidinus įrašų sk. 10 kartų|
+|---:|:---:|:---:|
+|1 000|0.02154835 s.|100 %|
+|10 000|0.1459253 s.|677 %|
+|100 000|1.39388 s.|955 %|
+|1 000 000|13.88358 s.|996 %|
+|10 000 000|148.7353 s.|1071 %|
+
+**Taigi, programos veikimo greitis auga maždaug tiesiškiai, didinant įrašų skaičių**
+
