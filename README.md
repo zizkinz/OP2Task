@@ -24,3 +24,12 @@ Sąrašai implementuoti dviem būdais:
 * Padarytas kodo refactoring'as: struktūros ir funkcojos yra perkelti į jiems atitinkamus header ir source failus.
 * Imprelentuotas exception handling. Dabar atidarant failą, jo egzistavimo patikra panaudoja išimčių valdymą.
 
+# Versija V0.4:
+
+* Implementuotas automatinis *1000, 10 000, 100 000, 1000 000, 10 000 000* įrašų failų generavimas.
+* Implementuotas studentų sąrašo rušiavimas pagal gautinį balą.
+* Implementuotas surušiuoto studentų sąrašo suskirstymas į du failus (kur galutinis < 5 ir kur galutinis => 5).
+* Surūšiuoti studentų sąrašai yra išvedami į du atitinkamus failus.
+
+***Atlikta programos veikimo greičio analizė naudojant C++ chrono biblioteką:***
+
