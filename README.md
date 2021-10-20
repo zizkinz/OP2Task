@@ -33,7 +33,7 @@ Sąrašai implementuoti dviem būdais:
 
 ***Atlikta programos veikimo greičio analizė naudojant C++ chrono biblioteką:***
 
-![alt text](https://github.com/zizkinz/OP1Task/blob/cd431cb9b957d8aa06551d17c63e3e201fab6ede/tests.png?raw=true)
+![alt text](https://github.com/zizkinz/OP1Task/blob/af17400fa26c2ed5fd80eb4dfbbf3122941e9e6d/tests.png?raw=true)
 
 **Atlikus 4 testus, buvo gauti tokie suvidurkinti rezultatai:**
 
@@ -52,4 +52,24 @@ Sąrašai implementuoti dviem būdais:
 
 * Padaryti testai su vector ir list tipo sąrašais
 
+![alt text](https://github.com/zizkinz/OP1Task/blob/af17400fa26c2ed5fd80eb4dfbbf3122941e9e6d/test2.png?raw=true)
 
+**Gauti rezultatai:**
+
+
+
+
+
+* Įrašų nuskaitymo laikas visais atvėjais buvo mažesnis naudojant _**vector'ių**_.
+
+* Įrašų rūšiavimo laikas visais atvėjais buvo mažesnis naudojant _**list'ą**_.
+
+* Bendras testo laikas buvo mažesnis naudojant _**vector'ių**_, kai irašų buvo nedaugiau už 100 000. 
+Testuojant 10 000 000 įrašų,  _**list**_ jau pasirode geriau, negu _**vector**_.
+
+***Sistema, kurioje buvo atlikti testai:***
+
+
+|CPU|RAM|Drive|
+|---|---|---|
+|Apple M1 3.2 GHz|8 GB LPDDR4X|NVMe SSD|
