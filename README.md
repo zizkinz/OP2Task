@@ -48,3 +48,8 @@ Sąrašai implementuoti dviem būdais:
 
 **Taigi, programos veikimo greitis auga maždaug tiesiškiai, didinant įrašų skaičių**
 
+# Versija V0.5:
+
+* Padaryti testai su vector ir list tipo sąrašais
+
+

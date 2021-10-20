@@ -14,7 +14,7 @@
 #include <vector>
 #include <random>
 #include <chrono>
-
+#include <list>
 
 
 using std::getline;
@@ -29,4 +29,4 @@ using std::setprecision;
 using std::endl;
 using std::vector;
 using std::fixed;
-
+using std::list;
