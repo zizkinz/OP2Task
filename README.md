@@ -60,12 +60,12 @@ Sąrašai implementuoti dviem būdais:
 
 
 
-* Įrašų nuskaitymo laikas visais atvėjais buvo mažesnis naudojant _**vector'ių**_.
+* Įrašų nuskaitymo laikas visais atvėjais buvo mažesnis naudojant _**list'ą**_.
 
-* Įrašų rūšiavimo laikas visais atvėjais buvo mažesnis naudojant _**list'ą**_.
+* Įrašų rūšiavimo laikas visais atvėjais buvo mažesnis naudojant _**vector'ių**_.
 
-* Bendras testo laikas buvo mažesnis naudojant _**vector'ių**_, kai irašų buvo nedaugiau už 100 000. 
-Testuojant 10 000 000 įrašų,  _**list**_ jau pasirode geriau, negu _**vector**_.
+* Bendras testo laikas buvo mažesnis naudojant _**list**_, kai irašų buvo nedaugiau už 100 000. 
+Testuojant 10 000 000 įrašų,  _**vector**_ jau pasirode geriau, negu _**list**_.
 
 ***Sistema, kurioje buvo atlikti testai:***
 
