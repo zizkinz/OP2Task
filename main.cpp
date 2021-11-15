@@ -9,6 +9,7 @@
 #include "binsearch.h"
 
 int main() {
+
     cout<<"Nuskaitomi failai..."<<endl;
     vector<studentas> grp1000;
     vector<studentas> grp10000;
@@ -21,9 +22,19 @@ int main() {
     for (int i = 1000; i <= 10000000; i*=10) {
         ifstream file_v;
         ifstream file_l;
-        string loc = "/Users/maksimcizov/CLionProjects/OP1Task/" + std::to_string(i) + ".txt";
-        file_v.open(loc);
-        auto start_v = std::chrono::high_resolution_clock::now();
+        string loc = std::to_string(i) + ".txt";
+        while(true) {
+            try {
+                file_v.open(loc);
+                if (!file_v.is_open()) { throw 1; }
+            }
+            catch (int err) {
+                cout << "Failas '" << loc << "' nebuvo surastas, iveskite lokacija dar karta:" << endl;
+                cin >> loc;
+                continue;
+            }
+            break;
+        }
         string line_v;
         int std_v_n = 0;
         while (getline(file_v, line_v)) {
@@ -83,7 +94,7 @@ int main() {
     cout<<"Vieno naujo konteinierio strategija"<<endl;
     for(int i=0;i<120;i++){cout<<"=";}
     cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
+    cout << setw(10)<<left<<"Įrašų sk." <<setw(31)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
     for(int i=0;i<120;i++){cout<<"=";}
     cout<<"\n";
     for (int i = 1000; i <= 10000000; i*=10){
@@ -102,11 +113,6 @@ int main() {
         sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
         vector<studentas> galvociai_v;
         vector<studentas> nuskriaustukai_v;
-//        while (grupe_v.back().gal_vid>=5){
-//
-//            galvociai_v.push_back(grupe_v.back());
-//            grupe_v.pop_back();
-//        }
         for (auto &std:grupe_v){
             if (std.gal_vid>=5){
                 galvociai_v.push_back(std);
@@ -142,7 +148,7 @@ int main() {
     cout<<"Dvieju nauju konteinieriu strategija"<<endl;
     for(int i=0;i<120;i++){cout<<"=";}
     cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
+    cout << setw(10)<<left<<"Įrašų sk." <<setw(31)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
     for(int i=0;i<120;i++){cout<<"=";}
     cout<<"\n";
     for (int i = 1000; i <= 10000000; i*=10){
@@ -177,7 +183,6 @@ int main() {
         vector<studentas> nuskriaustukai_l;
         std::remove_copy_if(grupe_l.begin(),grupe_l.end(),std::back_inserter(galvociai_l),([](studentas a){if (a.gal_vid<5){return true;} else {return false;}}));
         std::remove_copy_if(grupe_l.begin(),grupe_l.end(),std::back_inserter(nuskriaustukai_l),([](studentas a){if (a.gal_vid<5){return false;} else {return true;}}));
-//        grupe_l.erase(std::remove_if(grupe_l.begin(), grupe_l.end(),([](studentas a){if (a.gal_vid<5){return false;} else {return true;}})),grupe_l.end());
         auto end_l = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> sort_l = end_l - start_l;
 
@@ -200,7 +205,7 @@ int main() {
     cout<<"Vieno naujo konteinierio strategija"<<endl;
     for(int i=0;i<98;i++){cout<<"=";}
     cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector"<< setw(10)<<std::right<< "| "<<setw(13)<< left <<"list"<<setw(15)<<"| vector/list"<<setw(15)<<"| list/vector"
+    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector "<<std::right<< setw(9)<<"s. | "<<setw(10)<< left <<"list"<<setw(18)<<"s. | vector/list"<<setw(15)<<"| list/vector"
     <<endl;
     for(int i=0;i<98;i++){cout<<"=";}
     cout<<"\n";
@@ -252,7 +257,7 @@ int main() {
     cout<<"Dvieju nauju konteinieriu strategija"<<endl;
     for(int i=0;i<98;i++){cout<<"=";}
     cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector"<< setw(10)<<std::right<< "| "<<setw(13)<< left <<"list"<<setw(15)<<"| vector/list"<<setw(15)<<"| list/vector"
+    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector "<<std::right<< setw(9)<<"s. | "<<setw(10)<< left <<"list"<<setw(18)<<"s. | vector/list"<<setw(15)<<"| list/vector"
          <<endl;
     for(int i=0;i<98;i++){cout<<"=";}
     cout<<"\n";
@@ -270,11 +275,6 @@ int main() {
         sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
         vector<studentas> galvociai_v;
         vector<studentas> nuskriaustukai_v;
-//        while (grupe_v.back().gal_vid>=5){
-//
-//            galvociai_v.push_back(grupe_v.back());
-//            grupe_v.pop_back();
-//        }
         for (auto &std:grupe_v){
             if (std.gal_vid>=5){
                 galvociai_v.push_back(std);
@@ -290,10 +290,6 @@ int main() {
         grupe_l.sort(stud_compare_g);
         list<studentas> nuskriaustukai_l;
         list<studentas> galvociai_l;
-//        while (grupe_l.front().gal_vid<5){
-//            nuskriaustukai_l.push_back(grupe_l.front());
-//            grupe_l.pop_front();
-//        }
         for (auto &std:grupe_l){
             if (std.gal_vid>=5){
                 galvociai_l.push_back(std);
@@ -306,7 +302,6 @@ int main() {
 
 
         cout << setw(10)<<left<<i <<setw(33)<< "irasu rusiavimo laikas : " <<setw(14)<< left<<sort_v.count()<<"| "<< setw(13)<< left <<sort_l.count()<<"| "<< setw(13)<<sort_v.count()/sort_l.count()   <<"| "<< setw(13)<<sort_l.count()/sort_v.count() <<endl;
-//        cout << setw(10)<<left<<i <<setw(33)<< "irasu bendras testo laikas : " <<setw(14)<< left<<sort_v.count()+read_v.count()<<"| "<< setw(13)<< left <<sort_l.count()+read_l.count()<<"| "<< setw(13)<<(sort_v.count()+read_v.count())/(sort_l.count()+read_l.count())   <<"| "<< setw(13)<<(sort_l.count()+read_l.count())/(sort_v.count()+read_v.count()) <<endl;
         for(int i=0;i<98;i++){cout<<"-";}
         cout<<"\n";
     }
