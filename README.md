@@ -79,6 +79,12 @@ Testuojant 10 000 000 įrašų,  _**vector**_ jau pasirode geriau, negu _**list*
 
 * Padaryti skirtingų algortimtų ir rušavimo strategijų greitaveikos testai.
 
+***išvada:***
+
+*Geriausiai šiam uždaviniui tinka vector duomenų saugojimo tipas kartu su dviejų naujų konteinerių strategija*
+
+
+![alt text](https://github.com/zizkinz/OP1Task/blob/14ec3eb0cf18ae58f65eca4dac7e646d40fa412f/test3.png?raw=true)
 
 
 # Naudojimosi instrukcija:
@@ -91,3 +97,4 @@ Testuojant 10 000 000 įrašų,  _**vector**_ jau pasirode geriau, negu _**list*
     
     Vardas Pavardė ND1 ... NDn Egzaminas.
 3) Paleiskite programą.
+
