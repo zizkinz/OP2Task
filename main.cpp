@@ -1,12 +1,12 @@
 #include "libai.h"
 #include "studentas.h"
-#include "median.h"
-#include "generate.h"
-#include "mean.h"
-#include "printas.h"
-#include "comparator.h"
-#include "writeas.h"
-#include "binsearch.h"
+//#include "median.h"
+//#include "generate.h"
+//#include "mean.h"
+//#include "printas.h"
+//#include "comparator.h"
+//#include "writeas.h"
+//#include "binsearch.h"
 
 int main() {
 
@@ -22,7 +22,7 @@ int main() {
     for (int i = 1000; i <= 10000000; i*=10) {
         ifstream file_v;
         ifstream file_l;
-        string loc = std::to_string(i) + ".txt";
+        string loc = "/Users/maksimcizov/CLionProjects/OP1Task/" +  std::to_string(i) + ".txt";
         while(true) {
             try {
                 file_v.open(loc);
@@ -59,23 +59,19 @@ int main() {
                 line_v.erase(0, pos + 1);
             }
             if (data.size() < 4) { continue; }
-            studentas st;
-            st.vard = data[0];
-
-            st.pavard = data[1];
-            int nm;
             std::stringstream ss;
-
+            int nm;
+            ss << data.back();
+            ss >> nm;
+            studentas st(nm, data[0],data[1]);
+            vector <int> nd;
             for (int i = 2; i < data.size() - 1; i++) {
                 ss.clear();
                 ss << data[i];
                 ss >> nm;
-                st.nd.push_back(nm);
+                nd.push_back(nm);
             }
-            ss.clear();
-            ss << data.back();
-            ss >> nm;
-            st.ekzam = nm;
+            st.fillNd(nd);
             stds[i].push_back(st);
             std_v_n++;
         }
@@ -85,237 +81,57 @@ int main() {
 
     cout<<"Failai sekmingai nuskaityti"<<endl;
 
-
-
-
-    cout<<"\n\n";
-    for(int i=0;i<120;i++){cout<<"=";}
-    cout<<"\n";
-    cout<<"Vieno naujo konteinierio strategija"<<endl;
-    for(int i=0;i<120;i++){cout<<"=";}
-    cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(31)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
-    for(int i=0;i<120;i++){cout<<"=";}
-    cout<<"\n";
-    for (int i = 1000; i <= 10000000; i*=10){
-        vector<studentas> grupe_v;
-        vector<studentas> grupe_l;
-        grupe_v.clear();
-        grupe_l.clear();
-
-        for (auto k: stds[i]){
-            grupe_v.push_back(k);
-            grupe_l.push_back(k);
-        }
-
-        auto start_v = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_v);
-        sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
-        vector<studentas> galvociai_v;
-        vector<studentas> nuskriaustukai_v;
-        for (auto &std:grupe_v){
-            if (std.gal_vid>=5){
-                galvociai_v.push_back(std);
-            }
-            else {nuskriaustukai_v.push_back(std);}
-        }
-        auto end_v = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_v = end_v - start_v;
-
-
-        auto start_l = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_l);
-        sort(grupe_l.begin(), grupe_l.end(), stud_compare_g);
-        vector<studentas> galvociai_l;
-        std::remove_copy_if(grupe_l.begin(),grupe_l.end(),std::back_inserter(galvociai_l),([](studentas a){if (a.gal_vid<5){return true;} else {return false;}}));
-        grupe_l.erase(std::remove_if(grupe_l.begin(), grupe_l.end(),([](studentas a){if (a.gal_vid<5){return false;} else {return true;}})),grupe_l.end());
-        auto end_l = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_l = end_l - start_l;
-
-
-        cout << setw(10)<<left<<i <<setw(33)<< "irasu rusiavimo laikas : " <<setw(14)<< left<<sort_v.count()<<"| "<< setw(28)<< left <<sort_l.count()<<"| "<< setw(13)<<sort_v.count()/sort_l.count()<<endl;
-        for(int i=0;i<120;i++){cout<<"-";}
-        cout<<"\n";
-    }
-
-
-
-
+//    vector<int> a1;
+//    vector<int> a2;
+//    vector<int> a3;
+//    vector<int> a4;
+//    vector<int> a5;
+//    vector<vector<int>> dct = {a1, a2, a3, a4, a5};
 
     cout<<"\n\n";
-    for(int i=0;i<120;i++){cout<<"=";}
+    for(int i=0;i<58;i++){cout<<"=";}
     cout<<"\n";
-    cout<<"Dvieju nauju konteinieriu strategija"<<endl;
-    for(int i=0;i<120;i++){cout<<"=";}
-    cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(31)<<""<<"Mano alg."<< setw(10)<<std::right<< "| "<<setw(28)<< left <<"'remove_if'+'remove_copy_if'"<<setw(15)<<"| Kartų įdiegti algoritmai greitesni už mano"<<endl;
-    for(int i=0;i<120;i++){cout<<"=";}
-    cout<<"\n";
-    for (int i = 1000; i <= 10000000; i*=10){
-        vector<studentas> grupe_v;
-        vector<studentas> grupe_l;
-        grupe_v.clear();
-        grupe_l.clear();
-
-        for (auto k: stds[i]){
-            grupe_v.push_back(k);
-            grupe_l.push_back(k);
-        }
-
-        auto start_v = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_v);
-        sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
-        vector<studentas> galvociai_v;
-        while (grupe_v.back().gal_vid>=5){
-
-            galvociai_v.push_back(grupe_v.back());
-            grupe_v.pop_back();
-        }
-        vector<studentas> nuskriaustukai_v = grupe_v;
-        auto end_v = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_v = end_v - start_v;
-
-
-        auto start_l = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_l);
-        sort(grupe_l.begin(), grupe_l.end(), stud_compare_g);
-        vector<studentas> galvociai_l;
-        vector<studentas> nuskriaustukai_l;
-        std::remove_copy_if(grupe_l.begin(),grupe_l.end(),std::back_inserter(galvociai_l),([](studentas a){if (a.gal_vid<5){return true;} else {return false;}}));
-        std::remove_copy_if(grupe_l.begin(),grupe_l.end(),std::back_inserter(nuskriaustukai_l),([](studentas a){if (a.gal_vid<5){return false;} else {return true;}}));
-        auto end_l = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_l = end_l - start_l;
-
-
-        cout << setw(10)<<left<<i <<setw(33)<< "irasu rusiavimo laikas : " <<setw(14)<< left<<sort_v.count()<<"| "<< setw(28)<< left <<sort_l.count()<<"| "<< setw(13)<<sort_v.count()/sort_l.count()<<endl;
-        for(int i=0;i<120;i++){cout<<"-";}
-        cout<<"\n";
-    }
-
-
-
-
-
-
-
-
-    cout<<"\n\n";
-    for(int i=0;i<98;i++){cout<<"=";}
-    cout<<"\n";
-    cout<<"Vieno naujo konteinierio strategija"<<endl;
-    for(int i=0;i<98;i++){cout<<"=";}
-    cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector "<<std::right<< setw(9)<<"s. | "<<setw(10)<< left <<"list"<<setw(18)<<"s. | vector/list"<<setw(15)<<"| list/vector"
-    <<endl;
-    for(int i=0;i<98;i++){cout<<"=";}
-    cout<<"\n";
-    for (int i = 1000; i <= 10000000; i*=10){
-        vector<studentas> grupe_v;
-        list<studentas> grupe_l;
-        grupe_v.clear();
-        grupe_l.clear();
-
-        for (auto k: stds[i]){
-            grupe_v.push_back(k);
-            grupe_l.push_back(k);
-        }
-
-        auto start_v = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_v);
-        sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
-        vector<studentas> galvociai_v;
-        while (grupe_v.back().gal_vid>=5){
-
-            galvociai_v.push_back(grupe_v.back());
-            grupe_v.pop_back();
-        }
-        vector<studentas> nuskriaustukai_v = grupe_v;
-        auto end_v = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_v = end_v - start_v;
-
-
-        auto start_l = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_l);
-        grupe_l.sort(stud_compare_g);
-        list<studentas> nuskriaustukai_l;
-        while (grupe_l.back().gal_vid>=5){
-            nuskriaustukai_l.push_back(grupe_l.back());
-            grupe_l.pop_back();
-        }
-        list<studentas> galvociai_l = grupe_l;
-        auto end_l = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_l = end_l - start_l;
-
-
-        cout << setw(10)<<left<<i <<setw(33)<< "irasu rusiavimo laikas : " <<setw(14)<< left<<sort_v.count()<<"| "<< setw(13)<< left <<sort_l.count()<<"| "<< setw(13)<<sort_v.count()/sort_l.count()   <<"| "<< setw(13)<<sort_l.count()/sort_v.count() <<endl;
-       for(int i=0;i<98;i++){cout<<"-";}
-        cout<<"\n";
-    }
-    cout<<"\n\n";
-    for(int i=0;i<98;i++){cout<<"=";}
-    cout<<"\n";
-    cout<<"Dvieju nauju konteinieriu strategija"<<endl;
-    for(int i=0;i<98;i++){cout<<"=";}
-    cout<<"\n";
-    cout << setw(10)<<left<<"Įrašų sk." <<setw(34)<<""<<"vector "<<std::right<< setw(9)<<"s. | "<<setw(10)<< left <<"list"<<setw(18)<<"s. | vector/list"<<setw(15)<<"| list/vector"
-         <<endl;
-    for(int i=0;i<98;i++){cout<<"=";}
+    cout << setw(10)<<left<<"Įrašų sk." <<setw(49)<<std::right<<"s. |"<<endl;
+    for(int i=0;i<58;i++){cout<<"=";}
     cout<<"\n";
     for (int i = 1000; i <= 10000000; i*=10) {
-        vector<studentas> grupe_v;
-        list<studentas> grupe_l;
-        grupe_v.clear();
-        grupe_l.clear();
-        for (auto k: stds[i]){
-            grupe_v.push_back(k);
-            grupe_l.push_back(k);
-        }
-        auto start_v = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_v);
-        sort(grupe_v.begin(), grupe_v.end(), stud_compare_g);
-        vector<studentas> galvociai_v;
-        vector<studentas> nuskriaustukai_v;
-        for (auto &std:grupe_v){
-            if (std.gal_vid>=5){
-                galvociai_v.push_back(std);
+        vector<double> data;
+        for (int k = 0; k < 5; k++) {
+            vector<studentas> grupe_v;
+            list<studentas> grupe_l;
+            grupe_v.clear();
+            grupe_l.clear();
+            for (auto k: stds[i]) {
+                grupe_v.push_back(k);
+                grupe_l.push_back(k);
             }
-            else {nuskriaustukai_v.push_back(std);}
-        }
-        auto end_v = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_v = end_v - start_v;
-
-
-        auto start_l = std::chrono::high_resolution_clock::now();
-        mean_sk(grupe_l);
-        grupe_l.sort(stud_compare_g);
-        list<studentas> nuskriaustukai_l;
-        list<studentas> galvociai_l;
-        for (auto &std:grupe_l){
-            if (std.gal_vid>=5){
-                galvociai_l.push_back(std);
+            auto start_v = std::chrono::high_resolution_clock::now();
+            for (auto k: grupe_v) {
+                k.mean_sk();
             }
-            else {nuskriaustukai_l.push_back(std);}
+            sort(grupe_v.begin(), grupe_v.end(), cmp);
+            vector<studentas> galvociai_v;
+            vector<studentas> nuskriaustukai_v;
+            for (auto &std: grupe_v) {
+                if (std.getGalVid() >= 5) {
+                    galvociai_v.push_back(std);
+                } else { nuskriaustukai_v.push_back(std); }
+            }
+            auto end_v = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> sort_v = end_v - start_v;
+            data.push_back(sort_v.count());
         }
 
-        auto end_l = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> sort_l = end_l - start_l;
+        double sm = 0;
+        for (auto k : data){
+            sm += k;
+        }
+        sm = sm/data.size();
 
+            cout << setw(10) << left << i << setw(33) << "irasu rusiavimo laikas : " << setw(14) << left
+                 << sm << "| " << endl;
+            for (int i = 0; i < 58; i++) { cout << "-"; }
+            cout << "\n";
 
-        cout << setw(10)<<left<<i <<setw(33)<< "irasu rusiavimo laikas : " <<setw(14)<< left<<sort_v.count()<<"| "<< setw(13)<< left <<sort_l.count()<<"| "<< setw(13)<<sort_v.count()/sort_l.count()   <<"| "<< setw(13)<<sort_l.count()/sort_v.count() <<endl;
-        for(int i=0;i<98;i++){cout<<"-";}
-        cout<<"\n";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
