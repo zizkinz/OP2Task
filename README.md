@@ -86,6 +86,26 @@ Testuojant 10 000 000 įrašų,  _**vector**_ jau pasirode geriau, negu _**list*
 
 ![alt text](https://github.com/zizkinz/OP1Task/blob/14ec3eb0cf18ae58f65eca4dac7e646d40fa412f/test3.png?raw=true)
 
+# Versija V1.1:
+
+* Vietoje struktūros studentas realizuota analogiška klasė.
+* Visos buvusios funkcijos, susijusios su struktūra studentas buvo perrašytos kaip atitinkami klasės studentas metodai.
+
+_Visi testai buvo atlikti po 5 kartus, iš kuriu po to buvo suskaičiuotas vidurkis._
+
+**Naujosios implementacijos greitaveika buvo playginta su senosios:**
+
+*Iš kairės yra naujoji realizacija, o iš dešinės - senoji.*
+![alt text](https://github.com/zizkinz/OP2Task/blob/8d8c083a6037781de05a65da42becef3114ebcd1/test4-1.png?raw=true)
+Matome, kad visais atvejais, išskyrus atveji su 10 000 000 irašų, realizacija su klasė vietoj struktūros buvo greitesnė.
+
+
+**Taip pat realizacijos su klase greitaveika buvo įvertinta atsižvelgiant į skirtingus kompiliatoriaus flagus:**
+
+*Iš kairės yra flagas "-01", viduryje - "-02", o iš dešinės - "-03".*
+![alt text](https://github.com/zizkinz/OP2Task/blob/8d8c083a6037781de05a65da42becef3114ebcd1/test4-2.png?raw=true)
+Matome, kad flagas _**"-03"**_ pasirodė geriausiai
+
 
 # Naudojimosi instrukcija:
 

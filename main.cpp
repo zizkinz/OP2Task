@@ -22,7 +22,7 @@ int main() {
     for (int i = 1000; i <= 10000000; i*=10) {
         ifstream file_v;
         ifstream file_l;
-        string loc = "/Users/maksimcizov/CLionProjects/OP1Task/" +  std::to_string(i) + ".txt";
+        string loc = std::to_string(i) + ".txt";
         while(true) {
             try {
                 file_v.open(loc);
@@ -80,13 +80,6 @@ int main() {
 
 
     cout<<"Failai sekmingai nuskaityti"<<endl;
-
-//    vector<int> a1;
-//    vector<int> a2;
-//    vector<int> a3;
-//    vector<int> a4;
-//    vector<int> a5;
-//    vector<vector<int>> dct = {a1, a2, a3, a4, a5};
 
     cout<<"\n\n";
     for(int i=0;i<58;i++){cout<<"=";}
