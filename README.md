@@ -107,7 +107,7 @@ Matome, kad visais atvejais, išskyrus atveji su 10 000 000 irašų, realizacija
 Matome, kad flagas _**"-03"**_ pasirodė geriausiai
 
 
-# Versija V1.1:
+# Versija V1.2:
 
 * Implementuoti kopijavimo, priskyrimo, išvedimo ir įvedimo, palyginmo, bei [] operatoriai klasėje 'studentas'.
 * Taip pat klasėje realizuotas _'Rule of three'_
