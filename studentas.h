@@ -3,19 +3,27 @@
 #ifndef OP1TASK_STUDENTAS_H
 #define OP1TASK_STUDENTAS_H
 
-
-class studentas{
-private:
+class zmogus{
+protected:
     string vard_, pavard_;
+public:
+    zmogus() : vard_(""),pavard_("") {}
+    zmogus(string vardas, string pavarde) : vard_(vardas),pavard_(pavarde) {}
+    virtual const string &getVard() const = 0;
+    virtual const string &getPavard() const = 0;
+};
+
+class studentas: public zmogus{
+private:
     int ekzam_;
     float gal_vid_;
     float gal_med_;
     vector<int> nd_;
 public:
-    studentas() : ekzam_(0) {}
-    studentas(int ek) : ekzam_(ek) {}
-    studentas(string vardas, string pavarde);
-    studentas(int egzaminas, string vardas, string pavarde);
+    studentas() : zmogus(), ekzam_(0) {}
+    studentas(int ek) : zmogus(), ekzam_(ek) {}
+    studentas(string vardas, string pavarde): zmogus(vardas,pavarde),ekzam_(0) {}
+    studentas(int egzaminas, string vardas, string pavarde) : zmogus(vardas,pavarde), ekzam_(egzaminas) {}
     ~studentas();
 
     studentas(const studentas&);
