@@ -117,6 +117,10 @@ Matome, kad flagas _**"-03"**_ pasirodė geriausiai
 * Implementuota bazinė klasė *"Zmogus"*
 * Implementuotas klasės *"Studentas"* paveldėjimas iš klasės *"Zmogus"*
 
+# Versija V2.0:
+
+* Sukurta projekto dokumentacija, panaudojant Doxygen
+
 # Naudojimosi instrukcija:
 
 1) Panaudojus "CMakeLists.txt" failą, įdiekite programą.
