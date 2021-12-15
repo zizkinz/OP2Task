@@ -24,11 +24,11 @@ studentas& studentas::operator=(const studentas& st){
 studentas::~studentas(){
     this->nd_.clear();
 }
-studentas::studentas(string vardas, string pavarde) {
-    this->vard_ = vardas;
-    this->pavard_ = pavarde;
-    this->ekzam_ = 0;
-}
+//studentas::studentas(string vardas, string pavarde) {
+//    this->vard_ = vardas;
+//    this->pavard_ = pavarde;
+//    this->ekzam_ = 0;
+//}
 
 std::ostream& operator<<(std::ostream& out, const studentas &st){
     out << st.getVard()<<" "<< st.getPavard()<<" ";
@@ -85,12 +85,6 @@ bool operator==(studentas& st1,studentas& st2){
 
 bool operator!=(studentas& st1,studentas& st2){
     return !(st1==st2);
-}
-
-studentas::studentas(int egzaminas, string vardas, string pavarde) {
-    this->vard_ = vardas;
-    this->pavard_ = pavarde;
-    this->ekzam_ = egzaminas;
 }
 
 bool cmp(const studentas &stud_1,const  studentas &stud_2) {

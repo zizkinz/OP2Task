@@ -112,6 +112,11 @@ Matome, kad flagas _**"-03"**_ pasirodė geriausiai
 * Implementuoti kopijavimo, priskyrimo, išvedimo ir įvedimo, palyginmo, bei [] operatoriai klasėje 'studentas'.
 * Taip pat klasėje realizuotas _'Rule of three'_
 
+# Versija V1.5:
+
+* Implementuota bazinė klasė *"Zmogus"*
+* Implementuotas klasės *"Studentas"* paveldėjimas iš klasės *"Zmogus"*
+
 # Naudojimosi instrukcija:
 
 1) Panaudojus "CMakeLists.txt" failą, įdiekite programą.
